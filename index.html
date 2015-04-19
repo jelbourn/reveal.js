@@ -211,11 +211,52 @@
       </section>
 
       <section>
+        <h4>Other notes</h4>
+        <ul>
+          <li>
+            The spec is still in-progress and, while mostly stable, is subject to minor changes before finalization.
+          </li>
+          <li>
+
+          </li>
+        </ul>
+      </section>
+
+      <section>
         <h3>Template Elements</h3>
       </section>
 
       <section>
-        something
+  <pre>
+    <code style="transform: scale(1.25)" class="html">
+      <header>Hello!</header>
+
+      <template>
+        <p> this is the template content </p>
+      </template>
+
+      <footer> Goodbye! </footer>
+    </code>
+  </pre>
+      </section>
+
+      <section>
+        <pre><code>
+          Hello!
+          Goodbye!
+        </code></pre>
+      </section>
+
+      <section>
+        <p class="left-align">
+          The <code style="color: #CC7833">template</code> element creates an <em>inert</em> subtree than can manually
+          be manipulated, cloned, and inserted into the document.
+        </p>
+
+        <p class="fragment left-align">
+          This works very well with Shadow DOM, as the content of a template element can be used to clone into
+          shadow roots.
+        </p>
       </section>
 
       <section>
