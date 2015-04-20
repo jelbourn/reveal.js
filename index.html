@@ -52,6 +52,10 @@
       .scale-big * {
         transform: scale(5);
       }
+
+      .underline {
+        text-decoration: underline;
+      }
     </style>
 
     <div class="reveal">
@@ -146,10 +150,11 @@
       <section>
         <h4> What does being in a shadow root mean? </h4>
         <ul>
-          <li> All style definitions don't cross shadow root boundaries. </li>
-          <li> All element IDs are scoped to their shadow root. </li>
-          <li> Normal node traversal will terminate at shadow root boundaries. </li>
-          <li> Events are retargeted when they propagate across a shadow root boundary </li>
+          <li class="fragment"> All style definitions don't cross shadow root boundaries. </li>
+          <li class="fragment"> All element IDs are scoped to their shadow root. </li>
+          <li class="fragment"> Upward node traversal will terminate at shadow root boundaries. </li>
+          <li class="fragment"> Downward node traversal will skip over shadow roots. </li>
+          <li class="fragment"> Events are retargeted when they propagate across a shadow root boundary </li>
         </ul>
       </section>
 
@@ -158,13 +163,6 @@
         <p>
           The <code style="color: #CC7833">target</code> of an event is changed to the host element every time it
           propagates through a shadow root.
-        </p>
-      </section>
-
-      <section>
-        <h4>Consequence</h4>
-        <p class="left-align">
-          Creating components with Shadow DOM offers a level of encapsulation never before possible.
         </p>
       </section>
 
@@ -208,16 +206,79 @@
         <p>
           The sum of all of these features is a new tool that enables a level of encapsulation previously impossible.
         </p>
+        <p class="fragment">
+          Great stuff!
+        </p>
+      </section>
+
+      <section>
+        <p>But wait, there's more!</p>
+        <p class="fragment"><em>What if I want to make a component while "holes" in it?</em></p>
+      </section>
+
+      <section>
+        <pre>
+          <code class="html" style="text-replace:scale(1.25);">
+  <tabs>
+    <tab>Content of tab #1</tab>
+    <tab>Content of tab #2</tab>
+    <tab>Content of tab #3</tab>
+  </tabs>
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <h3>Content projection</h3>
+        <p class="fragment"><small><em>
+          the feature formerly known as <span style="color: #CC7833">transclusion</span>
+        </em></small></p>
+      </section>
+
+
+      <section>
+        <p class="left-align">
+          When the template inserted into a shadow root contains a <code style="color: #CC7833">&lt;content&gt;</code>
+          element, any child DOM in the host element is <em>projected</em> into that
+          <code style="color: #CC7833">&lt;content&gt;</code> element.
+        </p>
+        <p class="left-align fragment">
+          Let's look at an example:
+        </p>
+      </section>
+
+      <section>
+        <img src="img/frame.jpg">
+      </section>
+
+      <section>
+        <pre><code class="html">
+          <picutre-frame>
+            <img src="larry.jpg">
+          </picutre-frame>
+        </code></pre>
+      </section>
+
+      <section>
+        <img src="img/frame-larry.jpg">
+      </section>
+
+      <section>
+        <p>Exactly like <code style="color: #CC7833">ng-transclude</code>, right?</p>
+        <p class="fragment">Not exactly...</p>
       </section>
 
       <section>
         <h4>Other notes</h4>
         <ul>
-          <li>
+          <li class="fragment">
             The spec is still in-progress and, while mostly stable, is subject to minor changes before finalization.
           </li>
-          <li>
-
+          <li class="fragment">
+            Accessibility: screen readers are presented with the final, rendered tree.
+          </li>
+          <li class="fragment">
+            Like many things on the web, there are bound to be some holes and quirks.
           </li>
         </ul>
       </section>
@@ -279,6 +340,93 @@
 
       <section>
         <h3>Components</h3>
+      </section>
+
+      <section>
+        <p class="left-align">
+          Components in Angular 2 are heavily influced by both the structure and the encapsulation of web components.
+        </p>
+        <p class="left-align">
+          Angular 2 applications consist of a tree of encapsulated Views. Each view contains elements than <em>host</em>
+          other views.
+        </p>
+      </section>
+
+      <section>
+        <pre>
+          <code class="js">
+  @Component({ selector: 'cool-button' })
+  @View({
+    template: '<div>This is the shadow root content</div>'
+  })
+  class CoolButton { }
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <h3>Shadow DOM Strategy</h3>
+        <ul>
+          <li class="fragment">
+            <span class="underline">Native mode</span>: actual Shadow DOM in the browser.
+          </li>
+          <li class="fragment">
+            <span class="underline">Emulated mode</span>: Angular emulates Shadow DOM spec as closely as possible.
+                Somewhat costly.
+          </li>
+          <li class="fragment">
+            <span class="underline">Emulated unscoped mode</span> Emulates only content projection and event
+                retargeting. Much less costly.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3> Viewport directives </h3>
+        <p class="left-align"><code>For</code>, <code>If</code>, <code>Switch</code> directives</p>
+        <p class="left-align">
+          Takes a <code style="color: #CC7833">template</code> as input and decide how to clone it into actual content.
+        </p>
+      </section>
+
+      <section>
+        <pre>
+          <code>
+            for example
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <p>How does this affect <em>my</em> components?</p>
+      </section>
+
+      <section>
+        <p class="left-align">The <em>host</em> of a component is how the rest of the world sees it for</p>
+        <ul>
+          <li>Events</li>
+          <li>Accessibility</li>
+          <li>CSS</li>
+        </ul>
+      </section>
+
+      <section>
+        <p>
+          Angular 2 uses an <code>EventEmiter</code> object to imperitively fire event from a component's host element.
+        </p>
+      </section>
+
+      <section>
+        <p>
+          Angular 2 uses a <code>PropertySetter</code> object to imperitively set properties and attributes on the
+          host element.
+        </p>
+      </section>
+
+      <section>
+        <p>
+          All styles and behavioral modifiers are applied to the host element.
+        </p>
       </section>
 
 	  </div>
