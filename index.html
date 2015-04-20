@@ -64,9 +64,9 @@
     <div class="slides">
 
       <section>
-          <h3>New!</h3>
-          <p>Web Platform Features in Angular 2</p>
-          <p> <small>Jeremy Elbourn - jelbourn@</small> </p>
+        <h3>New!</h3>
+        <p>Web Platform Features in Angular 2</p>
+        <p> <small>Jeremy Elbourn - jelbourn@</small> </p>
       </section>
 
       <section>
@@ -133,7 +133,7 @@
       </section>
 
       <section>
-        <pre style="transform: scale(1.25)">
+        <pre>
           <code>
   // Start off by selecting the element you want to serve as the *host*.
   var hostElement = document.querySelector('#hostElement');
@@ -168,7 +168,7 @@
 
       <section>
         <pre>
-          <code style="transform: scale(1.25)">
+          <code>
     <awesome-app>
       <!-- shadow root -->
       <div class="header">
@@ -186,7 +186,7 @@
 
       <section data-transition="none" data-background-transition="none">
         <pre>
-          <code style="transform: scale(1.25)">
+          <code>
     <awesome-app>                       <!-- target: `awesome-app` -->
       <!-- shadow root -->
       <div class="header">              <!-- target: `awesome-widget` -->
@@ -253,9 +253,9 @@
 
       <section>
         <pre><code class="html">
-          <picutre-frame>
+          <picture-frame>
             <img src="larry.jpg">
-          </picutre-frame>
+          </picture-frame>
         </code></pre>
       </section>
 
@@ -266,6 +266,24 @@
       <section>
         <p>Exactly like <code style="color: #CC7833">ng-transclude</code>, right?</p>
         <p class="fragment">Not exactly...</p>
+      </section>
+
+      <section>
+        <img src="img/PEDASTALS-content.png">
+      </section>
+
+      <section>
+        <pre><code class="html" style="transform: scale(1.25);">
+          <pedastals>
+            <img src="larry.jpg" class="first">
+            <img src="sergey.jpg" class="second">
+            <img src="sundar.jpg" class="third">
+          </pedastals>
+        </code></pre>
+      </section>
+
+      <section>
+        <img src="img/PEDASTALS-pics.png">
       </section>
 
       <section>
@@ -289,7 +307,7 @@
 
       <section>
   <pre>
-    <code style="transform: scale(1.25)" class="html">
+    <code class="html">
       <header>Hello!</header>
 
       <template>
@@ -392,18 +410,35 @@
       <section>
         <pre>
           <code>
-            for example
+  <div *for="#person of contacts">
+    {{user.name}}
+  </div>
+          </code>
+        </pre>
+
+        <p class="fragment">This is actually just a syntactic sugar for...</p>
+      </section>
+
+
+      <section>
+        <pre> <code class="html">
+  &lt;template for #person [in]="contacts">
+    {{user.name}}
+  &lt;/template>
           </code>
         </pre>
       </section>
 
       <section>
         <p>How does this affect <em>my</em> components?</p>
+        <p>Here are some things to keep in mind when building Angular 2 components.</p>
       </section>
 
       <section>
-        <p class="left-align">The <em>host</em> of a component is how the rest of the world sees it for</p>
-        <ul>
+        <p class="left-align">
+          The <em>host</em> of a component is how the rest of the world sees it for:
+        </p>
+        <ul style="display: block">
           <li>Events</li>
           <li>Accessibility</li>
           <li>CSS</li>
@@ -412,21 +447,64 @@
 
       <section>
         <p>
-          Angular 2 uses an <code>EventEmiter</code> object to imperitively fire event from a component's host element.
+          Angular 2 uses an <code style="color: #CC7833">EventEmiter</code> object to imperitively fire event from a
+          component's host element.
         </p>
       </section>
 
       <section>
+        <pre><code class="js">
+  @Component({
+    // ...
+    events: ['game-over']
+  })
+        </code></pre>
+        <pre><code class="js">
+  this.gameOver = new EventEmitter();
+        </code></pre>
+        <pre><code class="js">
+  this.gameOver.next(finalScore);
+        </code></pre>
+      </section>
+
+      <section>
         <p>
-          Angular 2 uses a <code>PropertySetter</code> object to imperitively set properties and attributes on the
-          host element.
+          Angular 2 uses a declarative syntax to set properties and attributes on the host element.
         </p>
+      </section>
+
+      <section>
+        <pre><code class="js">
+  @Component({
+    // ...
+    hostProperties: {
+      role: 'attr.role',
+      checked: 'attr.aria-checked'
+    }
+  })
+        </code></pre>
+        <pre><code class="js">
+  this.checked = true;
+        </code></pre>
       </section>
 
       <section>
         <p>
           All styles and behavioral modifiers are applied to the host element.
         </p>
+      </section>
+
+
+      <section>
+        <pre><code class="css">
+          awesome-button .raised {
+            box-shadow: /** ... */
+          }
+        </code></pre>
+      </section>
+
+      <section>
+        <p>something something conclusion</p>
       </section>
 
 	  </div>
