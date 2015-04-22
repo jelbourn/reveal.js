@@ -345,7 +345,7 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
         </p>
 
         <p class="fragment left-align">
-          This works very well with Shadow DOM, as the content of a template element can be used to clone into
+          This works very well with Shadow DOM as the content of a template element can be used to clone into
           shadow roots.
         </p>
       </section>
@@ -359,6 +359,10 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
           Custom elements and HTML imports are specs considered part of "Web Components", but
           doesn't come into play with Angular 2, which has its own mechanics for creating custom
           elements (components) and template loading.
+        </p>
+        <p>
+          What <em>is</em> important to know, however, is that Angular 2 should work well with
+          third-party custom elements that aren't built with Angular.
         </p>
       </section>
 
@@ -470,7 +474,7 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
         </p>
         <ul>
           <li>Events</li>
-          <li>Accessibility</li>
+          <li>Attributes (esp. for accessibility)</li>
           <li>CSS</li>
         </ul>
       </section>
@@ -550,7 +554,7 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
       <section>
         <h3>Angular 1 example:</h3>
         <pre><code class="html">
-  <body ng-app>
+  &lt;div ng-app>
     <header>Cool App</header>
     <ng-view>
       <!-- loaded view -->
@@ -562,7 +566,7 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
         </custom-directive>
       </div>
     </ng-view>
-  </body>
+  &lt;/div>
         </code></pre>
 
         <p class="fragment">
@@ -611,6 +615,10 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
             github.com/angular/angular/
           </li>
         </ul>
+      </section>
+
+      <section>
+        Thanks you!
       </section>
 
 	  </div>
