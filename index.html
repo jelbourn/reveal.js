@@ -133,19 +133,31 @@
       </section>
 
       <section>
+        <p>
+          You can compose the web primitives you already have into more advanced components
+          and still present one flat API surface.
+        </p>
+        <p class="fragment">
+          What does building your component with a shadow root look like?
+        </p>
+      </section>
+
+      <section>
         <pre>
           <code>
-  // Start off by selecting the element you want to serve as the *host*.
-  var hostElement = document.querySelector('#hostElement');
+// Start off by selecting the element you want to serve as the *host*.
+var hostElement = document.querySelector('#hostElement');
 
-  // Then create a "Shadow Root" that will contain the shadowy DOM structure.
-  var shadowRoot = hostElement.createShadowRoot();
+// Then create a "Shadow Root" that will contain the shadowy DOM structure.
+var shadowRoot = hostElement.createShadowRoot();
 
-  // Add some content to the shadow root.
-  shadowRoot.appendChild(document.importNode(someTemplate.content));
+// Add some content to the shadow root.
+shadowRoot.appendChild(document.importNode(someTemplate.content));
           </code>
         </pre>
       </section>
+
+
 
       <section>
         <h4> What does being in a shadow root mean? </h4>
@@ -293,7 +305,7 @@
             The spec is still in-progress and, while mostly stable, is subject to minor changes before finalization.
           </li>
           <li class="fragment">
-            Accessibility: screen readers are presented with the final, rendered tree.
+            Accessibility: screen readers are presented with the final, rendered tree (this is good!).
           </li>
           <li class="fragment">
             Like many things on the web, there are bound to be some holes and quirks.
@@ -344,8 +356,9 @@
 
       <section>
         <p class="left-align">
-          Custom elements and HTML imports are specs considered part of "Web Components", but doesn't come into play
-          with Angular 2.
+          Custom elements and HTML imports are specs considered part of "Web Components", but
+          doesn't come into play with Angular 2, which has its own mechanics for creating custom
+          elements (components) and template loading.
         </p>
       </section>
 
@@ -354,32 +367,6 @@
         <p class="fragment">
           Angular 2 embraces these new concepts at its foundation.
         </p>
-      </section>
-
-      <section>
-        <h3>Components</h3>
-      </section>
-
-      <section>
-        <p class="left-align">
-          Components in Angular 2 are heavily influced by both the structure and the encapsulation of web components.
-        </p>
-        <p class="left-align">
-          Angular 2 applications consist of a tree of encapsulated Views. Each view contains elements than <em>host</em>
-          other views.
-        </p>
-      </section>
-
-      <section>
-        <pre>
-          <code class="js">
-  @Component({ selector: 'cool-button' })
-  @View({
-    template: '<div>This is the shadow root content</div>'
-  })
-  class CoolButton { }
-          </code>
-        </pre>
       </section>
 
       <section>
@@ -397,6 +384,43 @@
                 retargeting. Much less costly.
           </li>
         </ul>
+      </section>
+
+      <section>
+        <p>
+          The goal here is that Angular 2 will give you sensible, performant, cross-browser
+          behavior out of the box, abstracting away the complexities of the native Shadow DOM.
+        </p>
+      </section>
+
+      <section>
+        <h3>Components</h3>
+      </section>
+
+      <section>
+        <p class="left-align">
+          Components in Angular 2 are heavily influced by both the structure and the encapsulation of web components.
+        </p>
+        <p class="left-align">
+          Angular 2 applications consist of a tree of encapsulated Views. Each view contains elements than <em>host</em>
+          other views.
+        </p>
+        <p class="fragment">
+          We looked at the native API for creating a component with a shadow root before.
+          Here's how it will look in Angular 2.
+        </p>
+      </section>
+
+      <section>
+        <pre>
+          <code class="js">
+  @Component({ selector: 'cool-button' })
+  @View({
+    template: '<div>This is the shadow root content</div>'
+  })
+  class CoolButton { }
+          </code>
+        </pre>
       </section>
 
       <section>
@@ -436,7 +460,8 @@
 
       <section>
         <p class="left-align">
-          The <em>host</em> of a component is how the rest of the world sees it for:
+          Going along with Shadow DOM ideas, the <em>host</em> of a component is how the rest of
+          the world sees it for:
         </p>
         <ul style="display: block">
           <li>Events</li>
@@ -501,10 +526,24 @@
             box-shadow: /** ... */
           }
         </code></pre>
+        <pre class="fragment"><code class="css">
+          awesome-button.raised .inner-element {
+            box-shadow: /** ... */
+          }
+        </code></pre>
       </section>
 
       <section>
-        <p>something something conclusion</p>
+        <h3>These features are here today!</h3>
+        <p>
+          Try out the Angular 2 early-alpha, sneak-peek code labs!
+        </p>
+        <p>
+          
+        </p>
+        <p>
+
+        </p>
       </section>
 
 	  </div>
@@ -522,7 +561,7 @@
         width: 1040,
         heigt: 768,
         margin: 0,
-        controls: true,
+        controls: false,
         progress: true,
         history: true,
         center: true,
