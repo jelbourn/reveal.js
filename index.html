@@ -405,7 +405,7 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
           Angular 2 applications consist of a tree of encapsulated Views. Each view contains elements than <em>host</em>
           other views.
         </p>
-        <p class="fragment">
+        <p class="fragment left-align">
           We looked at the native API for creating a component with a shadow root before.
           Here's how it will look in Angular 2.
         </p>
@@ -421,6 +421,11 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
   class CoolButton { }
           </code>
         </pre>
+
+        <p class="fragment">
+          Angular 2 handles the creation of the shadow root and the cloning of the template
+          content for you.
+        </p>
       </section>
 
       <section>
@@ -459,11 +464,11 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
       </section>
 
       <section>
-        <p class="left-align">
+        <p>
           Going along with Shadow DOM ideas, the <em>host</em> of a component is how the rest of
           the world sees it for:
         </p>
-        <ul style="display: block">
+        <ul>
           <li>Events</li>
           <li>Accessibility</li>
           <li>CSS</li>
@@ -472,8 +477,8 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
 
       <section>
         <p>
-          Angular 2 uses an <code style="color: #CC7833">EventEmiter</code> object to imperitively fire event from a
-          component's host element.
+          Angular 2 uses an <code style="color: #CC7833">EventEmiter</code> object to imperitively
+          fire event from a component's host element.
         </p>
       </section>
 
@@ -534,16 +539,78 @@ shadowRoot.appendChild(document.importNode(someTemplate.content));
       </section>
 
       <section>
+        <h3>
+          Encapsulation
+        </h3>
+        <p>
+          Makes your components easier to reason about.
+        </p>
+      </section>
+
+      <section>
+        <h3>Angular 1 example:</h3>
+        <pre><code class="html">
+  <body ng-app>
+    <header>Cool App</header>
+    <ng-view>
+      <!-- loaded view -->
+      <div>Main content</div>
+      <div ng-controller="SubSectionController">
+        <div>Sub-section</div>
+        <custom-directive>
+          Some binding: {{item.name}}
+        </custom-directive>
+      </div>
+    </ng-view>
+  </body>
+        </code></pre>
+
+        <p class="fragment">
+          Where is <code style="color: #CC7833">item.name</code> coming from?
+        </p>
+      </section>
+
+      <section>
+        <p>
+          Angular 2 makes this much more straightforward: every template is bound to the context
+          of the Component.
+        </p>
+        <p><small>(no "scope" prototype chaining)</small></p>
+
+      </section>
+
+      <section>
+        <p>Hurray!</p>
+        <img src="img/rainbowtrex.jpg">
+      </section>
+
+      <section>
+        <p>
+          Now that you're excited, what should you do?
+        </p>
+      </section>
+
+      <section>
         <h3>These features are here today!</h3>
         <p>
           Try out the Angular 2 early-alpha, sneak-peek code labs!
         </p>
-        <p>
-          
-        </p>
-        <p>
-
-        </p>
+        <ul style="list-style-type: none">
+          <li>
+            go/ng2-codelab-js
+          </li>
+          <li>
+            go/ng2-codelab-dart
+          </li>
+        </ul>
+        <p><small><em>These will become stale quickly</em></small></p>
+        <hr>
+        <p>Follow the progress on github</p>
+        <ul style="list-style-type: none">
+          <li>
+            github.com/angular/angular/
+          </li>
+        </ul>
       </section>
 
 	  </div>
